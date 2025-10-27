@@ -18,7 +18,7 @@ class Game:
         # Sound TODO: add soundtrack
 
     def run(self):
-        
+
         self.start_time = pygame.time.get_ticks()
 
         while True:
@@ -33,7 +33,7 @@ class Game:
             self.start_time = pygame.time.get_ticks()
 
             pygame.display.update()
-            self.secreen.blit(self, bg_image, (0,0))
+            self.screen.blit(self.bg_image, (0,0))
             self.machine.update(self.delta_time)
             self.clock.tick(FPS)
 
