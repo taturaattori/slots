@@ -1,0 +1,8 @@
+#Display settings
+DEFAULT_IMG_SIZE = (300, 300)
+FPS = 120
+HEIGHT = 1000
+WIDTH = 1600
+
+# Images
+#BG_IMG_PATH =
