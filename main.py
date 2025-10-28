@@ -11,7 +11,6 @@ class Game:
         self.clock = pygame.time.Clock()
         self.bg_image = pygame.image.load(BG_IMG_PATH)
     
-        # TODO: create machine class
         self.machine = Machine()
         self.delta_time = 0
 
