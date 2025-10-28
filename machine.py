@@ -14,12 +14,12 @@ class Machine:
 
     def cooldowns(self):
         for reel in self.reel_list:
-            if self.reel_list[reel].reel_is_spinning:
+            if self.reel_list[reel].reels_is_spinning:
                 self.can_toggle = False
                 self.spinning = True
                 
         # Check that none of the reels are spinning before player can spin
-        if not self.can_toggle and [self.reel_list[reel].reel_is_spinning for reel in self.reel_list].count(False) == 5:
+        if not self.can_toggle and [self.reel_list[reel].reels_is_spinning for reel in self.reel_list].count(False) == 5:
             self.can_toggle = True
 
     def input(self):
@@ -58,6 +58,7 @@ class Machine:
                 # TODO: add sound effect
 
     def update(self, delta_time):
+        self.cooldowns()
         self.input()
         self.draw_reels(delta_time)
         for reel in self.reel_list:
