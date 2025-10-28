@@ -18,6 +18,37 @@ class Reel:
             pos[1] += 300
             pos = tuple(pos)
 
+    def animate(self, delta_time):
+        if self.reels_is_spinning:
+            self.delay_time -= (delta_time * 1000)
+            self.spin_time -= (delta_time * 1000)
+            reel_is_stopping = False
+
+            if self.spin_time < 0:
+                reel_is_stopping = True
+            
+            if self.delay_time <= 0:
+
+                # Iterate through all symbols in reel, remove last, add new one to top of the stack
+                for symbol in self.symbol_list:
+                    symbol.rect.bottom += 100
+
+                    # Correct spacing is dependent on the above addition eventually hitting 1200
+                    if symbol.rect.top == 1200:
+                        if reel_is_stopping:
+                            self.reels_is_spinning = False
+                            # stop sound effect?
+
+                        symbol_i = symbol.i
+                        symbol.kill()
+                        # Spawn random symbol in place of the above
+                        self.symbol_list.add(Symbol(symbols[random.choice(self.shuffled_keys)], ((symbol.x_val), -300), symbol_i))
+
+    def start_spin(self, delay_time):
+        self.delay_time = delay_time
+        self.spin_time = 1000 + delay_time
+        self.reels_is_spinning = True
+
 class Symbol(pygame.sprite.Sprite):
     def __init__(self, pathTofile, pos, i):
         super().__init__()
