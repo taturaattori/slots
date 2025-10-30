@@ -6,7 +6,7 @@ class Reel:
         self.symbol_list = pygame.sprite.Group()
         self.shuffled_keys = list(symbols.keys())
         random.shuffle(self.shuffled_keys)
-        self.shuffled_keys = self.shuffled_keys[:6]
+        self.shuffled_keys = self.shuffled_keys[:5]
 
         self.reels_is_spinning = False
 
@@ -48,6 +48,12 @@ class Reel:
         self.delay_time = delay_time
         self.spin_time = 1000 + delay_time
         self.reels_is_spinning = True
+
+    def reel_spin_result(self):
+        spin_symbols = []
+        for i in GAME_INDICES:
+            spin_symbols.append(self.symbol_list.sprites()[i].sym_type)
+        return spin_symbols[::-1]
 
 class Symbol(pygame.sprite.Sprite):
     def __init__(self, pathTofile, pos, i):
