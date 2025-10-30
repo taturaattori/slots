@@ -14,17 +14,3 @@ def flip_horizontal(result):
     
     hvals3 = [item[::-1] for item in hvals2]
     return hvals3
-
-def longest_seq(hit):
-    subSeqLength, longest = 1, 1
-    start, end = 0, 0
-    for i in range(len(hit) - 1):
-        if hit[i] == hit[i + 1]:
-            subSeqLength += 1
-            if subSeqLength > longest:
-                longest = subSeqLength
-                start = i + 2 - subSeqLength
-                end = i + 2
-            else:
-                subSeqLength = 1 
-    return hit[start:end]

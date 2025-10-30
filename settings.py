@@ -20,3 +20,12 @@ symbols = {
     "pumpkin": f"{SYMBOL_PATH}/pumpkin.png",
     "skull": f"{SYMBOL_PATH}/skull.png"
 }
+
+# Winning lines
+WINNING_LINES = {
+    "line1": [(0,0), (0,1), (0,2), (0,3), (0,4)],
+    "line2": [(1,0), (1,1), (1,2), (1,3), (1,4)],
+    "line3": [(2,0), (2,1), (2,2), (2,3), (2,4)],
+    "line4": [(0,0), (1,1), (2,2), (1,3), (0,4)],
+    "line5": [(2,0), (1,1), (0,2), (1,3), (2,4)]
+}

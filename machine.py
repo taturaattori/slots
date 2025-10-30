@@ -1,7 +1,7 @@
 from player import Player
 from reel import *
 from settings import *
-from wins import *
+from utility import *
 import pygame
 
 class Machine:
@@ -80,13 +80,23 @@ class Machine:
     def check_wins(self, result):
         hits = {}
         horizontal = flip_horizontal(result)
-        for row in horizontal:
-            for sym in row:
-                if row.count(sym) > 2:
-                    possible_win = [i for i, val in enumerate(row) if sym == val]
-
-                    if len(longest_seq(possible_win)) > 2:
-                        hits[horizontal.index(row) + 1] = [sym, longest_seq(possible_win)]
+        for line_name, coordinates in WINNING_LINES.items():
+            symbols = []
+            for row, col in coordinates:
+                symbols.append(horizontal[row][col])
+        
+                first_sym = symbols[0]
+                consecutive_count = 0
+        
+            for sym in symbols:
+                if sym == first_sym:
+                    consecutive_count += 1
+                else:
+                    break
+                
+            if consecutive_count >= 3:
+                hits[line_name] = [first_sym, list(range(consecutive_count))]
+    
         if hits:
             return hits
         
