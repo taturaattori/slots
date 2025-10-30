@@ -85,14 +85,18 @@ class Machine:
             for row, col in coordinates:
                 symbols.append(horizontal[row][col])
         
-                first_sym = symbols[0]
-                consecutive_count = 0
-        
+            first_sym = symbols[0]
+            consecutive_count = 0
+
             for sym in symbols:
-                if sym == first_sym:
+                if sym == first_sym or sym == "wild":
                     consecutive_count += 1
                 else:
-                    break
+                    if first_sym == "wild":
+                        first_sym = sym
+                        consecutive_count += 1
+                    else:
+                        break
                 
             if consecutive_count >= 3:
                 hits[line_name] = [first_sym, list(range(consecutive_count))]
