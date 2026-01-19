@@ -105,12 +105,23 @@ class Machine:
         if hits:
             return hits
         
+    def check_multiplier(self, win_data):
+        multiplier = 0
+        
+        for v in win_data.values():
+            symbol = v[0]
+            match_count = len(v[1])
+            
+            if symbol in PAYOUT_MULTIPLIERS and match_count in PAYOUT_MULTIPLIERS[symbol]:
+                multiplier += PAYOUT_MULTIPLIERS[symbol][match_count]
+    
+        return multiplier
+        
     def pay_player(self, win_data, curr_player):
         multiplier = 0
         spin_payout = 0
 
-        for v in win_data.values():
-            multiplier += len(v[1])
+        multiplier = self.check_multiplier(win_data)
             
         spin_payout = (multiplier * curr_player.bet_size)
         curr_player.balance += spin_payout
