@@ -2,11 +2,12 @@ from settings import *
 import pygame, random
 
 class Reel:
-    def __init__(self, pos):
+    def __init__(self, pos, reel_id):
         self.symbol_list = pygame.sprite.Group()
-        self.shuffled_keys = list(symbols.keys())
-        random.shuffle(self.shuffled_keys)
-        self.shuffled_keys = self.shuffled_keys[:5]
+
+        self.reel_config = REELS[f"reel{reel_id}"]
+
+        self.shuffled_keys = random.choices(self.reel_config, k=5)
 
         self.reels_is_spinning = False
 
@@ -42,7 +43,8 @@ class Reel:
                         symbol_i = symbol.i
                         symbol.kill()
                         # Spawn random symbol in place of the above
-                        self.symbol_list.add(Symbol(symbols[random.choice(self.shuffled_keys)], ((symbol.x_val), -300), symbol_i))
+                        random_symbol = random.choice(self.reel_config)
+                        self.symbol_list.add(Symbol(symbols[random_symbol], ((symbol.x_val), -300), symbol_i))
 
     def start_spin(self, delay_time):
         self.delay_time = delay_time

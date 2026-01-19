@@ -55,12 +55,12 @@ class Machine:
 
     def spawn_reels(self):
         if not self.reel_list:
-            x_topleft, y_topleft = 10, -300
+            x_topleft, y_topleft = START_X or 10, START_Y or -300
         while self.reel_index < 5:
             if self.reel_index > 0:
                 x_topleft, y_topleft = x_topleft + (DEFAULT_IMG_SIZE[0] + X_OFFSET), y_topleft
 
-            self.reel_list[self.reel_index] = Reel((x_topleft, y_topleft)) 
+            self.reel_list[self.reel_index] = Reel((x_topleft, y_topleft), self.reel_index + 1) 
             self.reel_index += 1
 
     def toggle_spinning(self):

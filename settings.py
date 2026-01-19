@@ -27,7 +27,11 @@ symbols = {
 }
 
 REELS = {
-    "reel1" : []
+    "reel1" : ["ten", "ten", "ten", "ten", "ten", "ten", "jack", "jack", "jack", "jack", "jack", "jack", "queen", "queen", "queen", "queen", "queen", "queen", "king", "king", "king", "king", "king", "king", "ace", "ace", "ace", "ace", "ace", "ace", "pumpkin", "pumpkin", "ghost", "ghost", "skull", "skull", "potion", "potion", "candle", "candle"],
+    "reel2" : ["ten", "ten", "ten", "ten", "ten", "ten", "jack", "jack", "jack", "jack", "jack", "jack", "queen", "queen", "queen", "queen", "queen", "queen", "king", "king", "king", "king", "king", "king", "ace", "ace", "ace", "ace", "ace", "ace", "pumpkin", "pumpkin", "ghost", "ghost", "skull", "skull", "potion", "potion", "candle", "candle", "wild", "wild"],
+    "reel3" : ["ten", "ten", "ten", "ten", "ten", "ten", "jack", "jack", "jack", "jack", "jack", "jack", "queen", "queen", "queen", "queen", "queen", "queen", "king", "king", "king", "king", "king", "king", "ace", "ace", "ace", "ace", "ace", "ace", "pumpkin", "pumpkin", "ghost", "ghost", "skull", "skull", "potion", "potion", "candle", "candle", "wild", "wild"],
+    "reel4" : ["ten", "ten", "ten", "ten", "ten", "ten", "jack", "jack", "jack", "jack", "jack", "jack", "queen", "queen", "queen", "queen", "queen", "queen", "king", "king", "king", "king", "king", "king", "ace", "ace", "ace", "ace", "ace", "ace", "pumpkin", "pumpkin", "ghost", "ghost", "skull", "skull", "potion", "potion", "candle", "candle", "wild", "wild"],
+    "reel5" : ["ten", "ten", "ten", "ten", "ten", "ten", "jack", "jack", "jack", "jack", "jack", "jack", "queen", "queen", "queen", "queen", "queen", "queen", "king", "king", "king", "king", "king", "king", "ace", "ace", "ace", "ace", "ace", "ace", "pumpkin", "pumpkin", "ghost", "ghost", "skull", "skull", "potion", "potion", "candle", "candle"]
 }
 
 # Winning lines
