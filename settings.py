@@ -14,11 +14,20 @@ SYMBOL_PATH = "graphics/symbols"
 # Symbols
 symbols = {
     "ghost": f"{SYMBOL_PATH}/ghost.png",
-    "grave": f"{SYMBOL_PATH}/grave.png",
+    "candle": f"{SYMBOL_PATH}/candle.png",
     "potion": f"{SYMBOL_PATH}/potion.png",
     "pumpkin": f"{SYMBOL_PATH}/pumpkin.png",
     "skull": f"{SYMBOL_PATH}/skull.png",
+    "ten": f"{SYMBOL_PATH}/ten.png",
+    "jack": f"{SYMBOL_PATH}/jack.png",
+    "queen": f"{SYMBOL_PATH}/queen.png",
+    "king": f"{SYMBOL_PATH}/king.png",
+    "ace": f"{SYMBOL_PATH}/ace.png",
     "wild": f"{SYMBOL_PATH}/wild.png"
+}
+
+REELS = {
+    "reel1" : []
 }
 
 # Winning lines

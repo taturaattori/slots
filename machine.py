@@ -1,3 +1,4 @@
+from debug import debug
 from player import Player
 from reel import *
 from settings import *
@@ -124,3 +125,13 @@ class Machine:
         for reel in self.reel_list:
             self.reel_list[reel].symbol_list.draw(self.display_surface)
             self.reel_list[reel].symbol_list.update()
+
+        # Balance/payout debugger
+
+        debug_player_data = self.currPlayer.get_data()
+        machine_balance = "{:.2f}".format(self.machine_balance)
+        if self.currPlayer.last_payout:
+            last_payout = "{:.2f}".format(self.currPlayer.last_payout)
+        else:
+            last_payout = "N/A"
+        debug(f"Player balance: {debug_player_data["balance"]} | Machine balance: {machine_balance} | Last payout: {last_payout}")
