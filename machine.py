@@ -141,8 +141,10 @@ class Machine:
 
         debug_player_data = self.currPlayer.get_data()
         machine_balance = "{:.2f}".format(self.machine_balance)
+        winning_lines = []
         if self.currPlayer.last_payout:
             last_payout = "{:.2f}".format(self.currPlayer.last_payout)
+            winning_lines = self.check_wins(self.spin_result).keys()
         else:
             last_payout = "N/A"
-        debug(f"Player balance: {debug_player_data["balance"]} | Machine balance: {machine_balance} | Last payout: {last_payout}")
+        debug(f"Player balance: {debug_player_data["balance"]} | Machine balance: {machine_balance} | Last payout: {last_payout} | Winning lines: {', '.join(winning_lines)}")
