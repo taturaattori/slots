@@ -148,3 +148,61 @@ class Machine:
         else:
             last_payout = "N/A"
         debug(f"Player balance: {debug_player_data["balance"]} | Machine balance: {machine_balance} | Last payout: {last_payout} | Winning lines: {', '.join(winning_lines)}")
+
+    def generate_random_spin(self):
+        # Generate a random spin result based on reel configurations
+        result = {}
+        for reel_id in range(5):
+            reel_config = REELS[f"reel{reel_id + 1}"]
+            # Generate virtual reel for better odds
+            virtual_reel = reel_config * 10
+            # Pick 3 symbols (the visible symbols on each reel)
+            result[reel_id] = [random.choice(virtual_reel) for _ in range(3)]
+        return result
+
+    def simulation(self, spins, bet_size):
+        sim_player = Player()
+        sim_player.bet_size = bet_size
+        total_spins = spins
+        sim_player.total_won = 0.00
+        sim_player.total_wager = 0.00
+        winning_spins = 0
+        total_payout = 0.00
+        win_frequency = {}
+        
+        for _ in range(total_spins):
+            sim_player.place_bet()
+            sim_player.total_wager += sim_player.bet_size
+            
+            # Generate random spin result
+            spin_result = self.generate_random_spin()
+            
+            win_data = self.check_wins(spin_result)
+            if win_data:
+                winning_spins += 1
+                multiplier = self.check_multiplier(win_data)
+                spin_payout = (multiplier * sim_player.bet_size)
+                sim_player.balance += spin_payout
+                sim_player.total_won += spin_payout
+                total_payout += spin_payout
+                
+                # Track win frequency by symbol
+                for line, data in win_data.items():
+                    symbol = data[0]
+                    count = len(data[1])
+                    key = f"{symbol}_{count}"
+                    win_frequency[key] = win_frequency.get(key, 0) + 1
+
+        rtp = (sim_player.total_won / sim_player.total_wager) * 100 if sim_player.total_wager > 0 else 0
+        hit_rate = (winning_spins / total_spins) * 100 if total_spins > 0 else 0
+
+        return {
+            "total_spins": total_spins,
+            "winning_spins": winning_spins,
+            "hit_rate": "{:.2f}%".format(hit_rate),
+            "total_wagered": "{:.2f}".format(sim_player.total_wager),
+            "total_won": "{:.2f}".format(sim_player.total_won),
+            "final_balance": "{:.2f}".format(sim_player.balance),
+            "RTP": "{:.2f}%".format(rtp),
+            "win_frequency": win_frequency
+        }
