@@ -93,11 +93,7 @@ class Machine:
                 if sym == first_sym or sym == "wild":
                     consecutive_count += 1
                 else:
-                    if first_sym == "wild":
-                        first_sym = sym
-                        consecutive_count += 1
-                    else:
-                        break
+                    break
                 
             if consecutive_count >= 3:
                 hits[line_name] = [first_sym, list(range(consecutive_count))]
